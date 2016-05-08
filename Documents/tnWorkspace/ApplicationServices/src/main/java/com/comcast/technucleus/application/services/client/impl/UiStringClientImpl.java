@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.comcast.technucleus.application.dao.UiStringMongoDAO;
-import com.comcast.technucleus.application.exception.DataLoadException;
+import com.comcast.technucleus.application.exception.ApplicationServiceException;
 import com.comcast.technucleus.application.services.client.UiStringClient;
 import com.mongodb.DBObject;
 /**
@@ -27,22 +27,22 @@ public class UiStringClientImpl implements UiStringClient {
 	private UiStringMongoDAO uiStringMongoDAO;
 
 	@Override
-	public String createNewScreen(String screenName) throws DataLoadException{
+	public String createNewScreen(String screenName) throws ApplicationServiceException{
 		return uiStringMongoDAO.insertUiScreens(screenName);
 	}
 
 	@Override
-	public String createNewScreensString(String screenName, String id, String description, String value) throws DataLoadException{
+	public String createNewScreensString(String screenName, String id, String description, String value) throws ApplicationServiceException{
 		return uiStringMongoDAO.insertUiScreensString(screenName, id, value, description);
 	}
 
 	@Override
-	public String updateNewScreen(String screenName, String newScreenName) throws DataLoadException{
+	public String updateNewScreen(String screenName, String newScreenName) throws ApplicationServiceException{
 		return uiStringMongoDAO.updateUiScreens(screenName, newScreenName);
 	}
 
 	@Override
-	public String updateUiScreensString(String screenName, String id, String newId, String newValue, String newDescription) throws DataLoadException{
+	public String updateUiScreensString(String screenName, String id, String newId, String newValue, String newDescription) throws ApplicationServiceException{
 		return uiStringMongoDAO.updateUiScreensString(screenName, id, newId, newValue, newDescription);
 	}
 

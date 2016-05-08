@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.comcast.technucleus.application.response.data.ContactInfo;
+import com.comcast.technucleus.application.model.ContactInfo;
 import com.comcast.technucleus.application.router.ContactServiceRouter;
 import com.comcast.technucleus.application.services.client.ContactServiceClient;
 import com.comcast.xml.offermgmt.types.TcopBillingCodeMapping;

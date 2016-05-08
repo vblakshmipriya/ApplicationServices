@@ -1,6 +1,6 @@
 package com.comcast.technucleus.application.services.client;
 
-import com.comcast.technucleus.application.response.data.Eisresultset;
+import com.comcast.technucleus.application.model.Eisresultset;
 
 public interface EnterpriseInventoryServiceClient {
 

@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.comcast.technucleus.application.constants.PropertiesConstants;
 import com.comcast.technucleus.application.exception.ApplicationServiceException;
+import com.comcast.technucleus.application.model.Eisresultset;
+import com.comcast.technucleus.application.model.ObjectFactory;
 import com.comcast.technucleus.application.properties.Properties;
-import com.comcast.technucleus.application.response.data.Eisresultset;
-import com.comcast.technucleus.application.response.data.ObjectFactory;
 import com.comcast.technucleus.application.services.client.EnterpriseInventoryServiceClient;
 
 import _0.mintekeiswebservices2.TransactionsSoap;

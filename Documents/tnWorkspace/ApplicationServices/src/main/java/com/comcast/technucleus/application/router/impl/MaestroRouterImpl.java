@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.comcast.technucleus.application.exception.ApplicationClientException;
 import com.comcast.technucleus.application.exception.ApplicationTimeOutException;
 import com.comcast.technucleus.application.exception.ApplicationClientException.CEErrorCode;
-import com.comcast.technucleus.application.exception.FallBackException.FallBackErrorCode;
+import com.comcast.technucleus.application.exception.ApplicationServiceException.SEErrorCode;
 import com.comcast.technucleus.application.exception.ApplicationTimeOutException.TOErrorCode;
 import com.comcast.technucleus.application.router.MaestroRouter;
 import com.comcast.technucleus.application.services.client.MaestroServiceClient;
@@ -100,7 +100,7 @@ public class MaestroRouterImpl implements MaestroRouter {
 	public JSONObject getDeviceImagesFallBack(String deviceModel, String maestroSessionToken)
 	{	
 		log.error("getDeviceImagesFallBack: Error code- {} - error response from maestro for model {} - ", 
-				FallBackErrorCode.FALL_BACK_MAESTRO_DEVICE_IMAGE_RESPONSE_ERROR.toString(), deviceModel);
+				SEErrorCode.SERVICE_FALL_BACK_MAESTRO_DEVICE_IMAGE_RESPONSE_ERROR.toString(), deviceModel);
 		/*	throw new FallBackException("getDeviceImagesFallBack - Error retrieving maestro response for device image", 
 				FallBackErrorCode.FALL_BACK_MAESTRO_DEVICE_IMAGE_RESPONSE_ERROR.toString());	*/
 
@@ -124,7 +124,7 @@ public class MaestroRouterImpl implements MaestroRouter {
 
 	public String getAlertsFallBack(String maestroSessionToken , Throwable t)
 	{	
-		log.error("getAlertsFallBack: error retrieving the maestro session token {}",FallBackErrorCode.FALL_BACK_MAESTRO_TOKEN_ERROR.toString() );
+		log.error("getAlertsFallBack: error retrieving the maestro session token {}",SEErrorCode.SERVICE_FALL_BACK_MAESTRO_TOKEN_ERROR.toString() );
 		if(t == null) {
 			log.error("getAlertsFallBack: Time Out occurred-{}",t);
 			throw new ApplicationTimeOutException(TOErrorCode.MAESTRO_GETALERTS_CONTENT_TIME_OUT_OCCURRED, HttpStatus.GATEWAY_TIMEOUT.toString(), t);
@@ -154,7 +154,7 @@ public class MaestroRouterImpl implements MaestroRouter {
 
 	public String getDocumentFallBack(String docId , String maestroSessionToken, Throwable t)
 	{	
-		log.error("getDocumentFallBack: error retrieving the maestro Document",FallBackErrorCode.FALL_BACK_MAESTRO_GETDOC_ERROR.toString() );
+		log.error("getDocumentFallBack: error retrieving the maestro Document",SEErrorCode.SERVICE_FALL_BACK_MAESTRO_GETDOC_ERROR.toString() );
 		if(t == null) {
 			log.error("getRelatedDocDetailsFallBack: Time Out occurred-{}",t);
 			throw new ApplicationTimeOutException(TOErrorCode.MAESTRO_GETDOCUMENT_CONTENT_TIME_OUT_OCCURRED, HttpStatus.GATEWAY_TIMEOUT.toString(), t);
@@ -184,7 +184,7 @@ public class MaestroRouterImpl implements MaestroRouter {
 
 	public String getRelatedDocDetailsFallBack(String docId , String maestroSessionToken, Throwable t)
 	{	
-		log.error("getRelatedDocDetailsFallBack: error retrieving the maestro Related Document",FallBackErrorCode.FALL_BACK_MAESTRO_GETDOC_DETAIL_ERROR.toString() );
+		log.error("getRelatedDocDetailsFallBack: error retrieving the maestro Related Document",SEErrorCode.SERVICE_FALL_BACK_MAESTRO_GETDOC_DETAIL_ERROR.toString() );
 		if(t == null) {
 			log.error("getRelatedDocDetailsFallBack: Time Out occurred-{}",t);
 			throw new ApplicationTimeOutException(TOErrorCode.MAESTRO_GETRELATED_DOCS_CONTENT_TIME_OUT_OCCURRED, HttpStatus.GATEWAY_TIMEOUT.toString(), t);

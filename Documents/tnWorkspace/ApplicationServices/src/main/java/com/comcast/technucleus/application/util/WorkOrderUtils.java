@@ -18,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.comcast.technucleus.application.constants.PropertiesConstants;
 import com.comcast.technucleus.application.constants.ServicesConstants;
-import com.comcast.technucleus.application.model.internalservice.InternalBillingCodeMap;
+import com.comcast.technucleus.application.model.InternalBillingCodeMap;
 import com.comcast.technucleus.application.properties.Properties;
 import com.comcast.technucleus.application.services.client.LocationServiceClient;
 import com.google.common.base.Throwables;

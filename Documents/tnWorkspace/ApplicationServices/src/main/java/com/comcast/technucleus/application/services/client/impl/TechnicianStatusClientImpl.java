@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.comcast.technucleus.application.constants.PropertiesConstants;
-import com.comcast.technucleus.application.model.internalservice.TechDetails;
-import com.comcast.technucleus.application.model.internalservice.TechNukeResponse;
+import com.comcast.technucleus.application.model.TechDetails;
+import com.comcast.technucleus.application.model.TechNukeResponse;
 import com.comcast.technucleus.application.properties.Properties;
 import com.comcast.technucleus.application.services.client.TechnicianStatusClient;
 import com.google.gson.JsonObject;

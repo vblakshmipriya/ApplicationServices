@@ -21,7 +21,7 @@ import com.comcast.technucleus.application.constants.PropertiesConstants;
 import com.comcast.technucleus.application.dao.UserProfileMongoDAO;
 import com.comcast.technucleus.application.exception.ApplicationClientException;
 import com.comcast.technucleus.application.exception.ApplicationClientException.CEErrorCode;
-import com.comcast.technucleus.application.model.internalservice.TechDetails;
+import com.comcast.technucleus.application.model.TechDetails;
 import com.comcast.technucleus.application.properties.Properties;
 import com.comcast.technucleus.application.services.client.UserClient;
 import com.comcast.technucleus.application.util.UserProfileUtil;
@@ -300,5 +300,10 @@ public class UserClientImpl implements UserClient {
 
 		return entity;
 
+	}
+
+	@Override
+	public DBObject getUserProfileByNtIdFromDb(String ntId) {
+		return userProfileMongoDAO.getUserProfileByNtIdFromDb(ntId);
 	}
 }

@@ -1,7 +1,7 @@
 package com.comcast.technucleus.application.services.client;
 
-import com.comcast.technucleus.application.model.internalservice.TechLocationDetails;
-import com.comcast.technucleus.application.model.internalservice.TechNukeResponse;
+import com.comcast.technucleus.application.model.TechLocationDetails;
+import com.comcast.technucleus.application.model.TechNukeResponse;
 
 public interface TechGpsLocationUpdateClient {
 	

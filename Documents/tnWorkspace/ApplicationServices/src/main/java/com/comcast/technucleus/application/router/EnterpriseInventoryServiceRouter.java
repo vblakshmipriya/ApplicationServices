@@ -1,6 +1,6 @@
 package com.comcast.technucleus.application.router;
 
-import com.comcast.technucleus.application.response.data.Eisresultset;
+import com.comcast.technucleus.application.model.Eisresultset;
 
 public interface EnterpriseInventoryServiceRouter 
 {

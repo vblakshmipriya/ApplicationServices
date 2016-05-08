@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 
 import com.comcast.technucleus.application.configuration.SpringMongoConfig;
 import com.comcast.technucleus.application.dao.ConfigurationMongoDAO;
-import com.comcast.technucleus.application.exception.ConfigurationLoadException;
+import com.comcast.technucleus.application.exception.ApplicationServiceException;
+import com.comcast.technucleus.application.exception.ApplicationServiceException.SEErrorCode;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -44,7 +45,7 @@ public class ConfigurationMongoDAOImpl implements ConfigurationMongoDAO {
 	 * @return TechNukeResponse
 	 */
 
-	public DBObject getConfiguration(String groupID) throws ConfigurationLoadException {
+	public DBObject getConfiguration(String groupID) throws ApplicationServiceException {
 		DBObject obj = null;
 		DBCollection configCollection = getConfigurationCollection();
 		BasicDBObject queryObj = new BasicDBObject();
@@ -56,19 +57,20 @@ public class ConfigurationMongoDAOImpl implements ConfigurationMongoDAO {
 			obj = cursor.next();
 
 		} else {
-			throw new ConfigurationLoadException("There are " + length + " active Configuration avaiable for groupID");
+			throw new ApplicationServiceException(SEErrorCode.SERVICE_CONFIG_LOAD_ERROR,"There are " + length + " active Configuration avaiable for groupID", null, null);
+
 		}
 		return obj;
 	}
 
-	public DBObject createDeviceInformation(String groupID) throws ConfigurationLoadException {
+	public DBObject createDeviceInformation(String groupID) throws ApplicationServiceException {
 		DBObject obj = null;
 		// TODO : Need to implement
 		return obj;
 	}
 
 	@Override
-	public DBObject getProperties(String propertieType) throws ConfigurationLoadException {
+	public DBObject getProperties(String propertieType) throws ApplicationServiceException {
 
 		DBObject obj = null;
 		DBCollection configCollection = getConfigurationCollection();
@@ -81,8 +83,7 @@ public class ConfigurationMongoDAOImpl implements ConfigurationMongoDAO {
 			obj = cursor.next();
 
 		} else {
-			throw new ConfigurationLoadException(
-					"There are No or more than one active " + "Property avaiable for group : " + propertieType);
+			throw new ApplicationServiceException(SEErrorCode.SERVICE_CONFIG_LOAD_ERROR,"There are No or more than one active " + "Property avaiable for group : " + propertieType, null, null);
 		}
 		return obj;
 	}

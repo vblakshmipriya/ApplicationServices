@@ -34,8 +34,8 @@ import org.springframework.stereotype.Component;
 
 import com.comcast.technucleus.application.constants.PropertiesConstants;
 import com.comcast.technucleus.application.exception.ApplicationServiceException;
+import com.comcast.technucleus.application.model.ContactInfo;
 import com.comcast.technucleus.application.properties.Properties;
-import com.comcast.technucleus.application.response.data.ContactInfo;
 import com.comcast.technucleus.application.services.client.ContactServiceClient;
 import com.comcast.xml.contact.types.BillingNote;
 import com.comcast.xml.contact.types.CITNote;

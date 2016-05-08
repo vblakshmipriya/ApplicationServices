@@ -1,7 +1,8 @@
 package com.comcast.technucleus.application.services.client;
 
 import java.util.List;
-import com.comcast.technucleus.application.response.data.TechBufferDevice;
+
+import com.comcast.technucleus.application.model.TechBufferDevice;
 
 public interface TechBufferClient 
 {

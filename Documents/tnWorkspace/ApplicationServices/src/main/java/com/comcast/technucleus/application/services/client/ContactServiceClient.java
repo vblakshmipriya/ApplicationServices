@@ -2,7 +2,7 @@ package com.comcast.technucleus.application.services.client;
 
 import java.util.List;
 
-import com.comcast.technucleus.application.response.data.ContactInfo;
+import com.comcast.technucleus.application.model.ContactInfo;
 
 public interface ContactServiceClient 
 {

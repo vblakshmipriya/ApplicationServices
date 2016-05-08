@@ -6,13 +6,13 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.stereotype.Component;
 
 import com.comcast.technucleus.application.configuration.SpringMongoConfig;
 import com.comcast.technucleus.application.dao.UiStringMongoDAO;
-import com.comcast.technucleus.application.exception.DataLoadException;
+import com.comcast.technucleus.application.exception.ApplicationServiceException.SEErrorCode;
 import com.comcast.technucleus.application.exception.ApplicationInvalidRequestException;
+import com.comcast.technucleus.application.exception.ApplicationServiceException;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -64,7 +64,7 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 	 * Insert new screen name for IOS and IOS Description
 	 */
 
-	public String insertUiScreens(String screenName) throws DataLoadException {
+	public String insertUiScreens(String screenName) throws ApplicationServiceException {
 		DBCollection uiStringCollection = getUIStringCollection();
 
 		BasicDBObject iosObj = iosDBObject();
@@ -78,7 +78,7 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 			BasicDBObject query = new BasicDBObject(screenName, new BasicDBObject(EXISTS, true));
 			if (uiStringCollection.count(query) > 0) {
 				log.info("Screen name already exists");
-				throw new DataLoadException(screenName + " already exists");
+				throw new ApplicationServiceException(SEErrorCode.SERVICE_MONGO_DATA_LOAD_ERROR,screenName + " already exists", null, null);	
 			} else {
 				BasicDBList dbList = new BasicDBList();
 				dbList.add(IOS);
@@ -119,7 +119,7 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 		
 		if (uiStringCollection.count(findScreenObj) == 0) {
 			log.info("Screen name doesn't exist");
-			throw new DataLoadException(screenName + " doesn't exist");
+			throw new ApplicationServiceException(SEErrorCode.SERVICE_MONGO_DATA_LOAD_ERROR,screenName + " doesn't exist", null, null);	
 		}else{
 			BasicDBObject findKeyForScreenName = iosDBObject();
 			findKeyForScreenName.put(screenName + "." + key, new BasicDBObject(EXISTS, true));
@@ -163,7 +163,8 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 				uiStringCollection.update(iosDescObject(), iosDescSetObj);
 
 			} else {
-				throw new DataLoadException("UI String " + key + " for " + screenName + " already exists");
+				throw new ApplicationServiceException(SEErrorCode.SERVICE_MONGO_DATA_LOAD_ERROR,"UI String " + key + " for " + screenName + " already exists", null, null);
+				
 			}
 		}
 		return "UI String " + key + " for " + screenName + " is created";
@@ -181,7 +182,7 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 	 * @throws		: DataLoadException
 	 */
 	@Override
-	public String updateUiScreens(String screenName, String newScreenName) throws DataLoadException {
+	public String updateUiScreens(String screenName, String newScreenName) throws ApplicationServiceException {
 		DBCollection uiStringCollection = getUIStringCollection();
 
 		DBObject findScreenObj = new BasicDBObject();
@@ -189,7 +190,7 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 
 		if (uiStringCollection.count(findScreenObj) == 0) {
 			log.info("Screen name doesn't exist");
-			throw new DataLoadException(screenName + " doesn't exist");
+			throw new ApplicationServiceException(SEErrorCode.SERVICE_MONGO_DATA_LOAD_ERROR,screenName + " doesn't exist", null, null);
 		} else {
 			BasicDBList dbList = new BasicDBList();
 			dbList.add(IOS);
@@ -229,7 +230,7 @@ public class UiStringMongoDAOImpl implements UiStringMongoDAO {
 		long count = uiStringCollection.count(query);
 
 		if (count == 0) {
-			throw new DataLoadException("UI String " + key + " for " + screenName + " doesn't exist");
+			throw new ApplicationServiceException(SEErrorCode.SERVICE_MONGO_DATA_LOAD_ERROR,"UI String " + key + " for " + screenName + " doesn't exist", null, null);
 		} else {
 			BasicDBObject iosObj = iosDBObject();
 

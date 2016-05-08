@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.comcast.technucleus.application.dao.ConfigurationMongoDAO;
-import com.comcast.technucleus.application.exception.ConfigurationLoadException;
+import com.comcast.technucleus.application.exception.ApplicationServiceException;
 import com.mongodb.DBObject;
 
 
@@ -63,7 +63,7 @@ public class Properties
 	 *                and process then and store in (Map<String,String>) properties
 	 * 
 	 */
-	private synchronized void instantiate() throws ConfigurationLoadException
+	private synchronized void instantiate() throws ApplicationServiceException
 	{
 		properties = new HashMap<String, String>();		
 		DBObject endpointProperties = configurationMongoDAO.getProperties(SERVICE_END_POINT_PROPERTIES);
